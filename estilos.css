@@ -1,0 +1,217 @@
+/* =========================================================
+   FigiKhan • Dorado Royal
+   Extravagante, dorado y performante
+   ========================================================= */
+
+:root{
+  --bg: #0b0b0f;
+  --bg-soft: #111117;
+  --text: #e9edf1;
+  --muted: #b8c0cf;
+
+  /* Dorados */
+  --gold-1: #ffd700;
+  --gold-2: #f7e27d;
+  --gold-3: #d4af37;
+  --gold-4: #b8860b;
+
+  --card: #0f1219;
+  --glass: rgba(255,255,255,.06);
+  --radius: 18px;
+  --shadow: 0 12px 40px rgba(0,0,0,.45);
+}
+
+/* Reset básico */
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 10% 0%, #13131a 0%, #0b0b0f 50%, #07070b 100%);
+  overflow-x: hidden;
+}
+
+/* Canvas al fondo */
+#bg{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* Grano suave encima del fondo (textura elegante) */
+body::after{
+  content:"";
+  position: fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 800px at 90% 10%, rgba(255,215,0,.07), transparent 60%),
+    repeating-radial-gradient( circle at 20% 80%, rgba(255,255,255,.02), rgba(255,255,255,.02) 2px, transparent 3px, transparent 6px );
+  mix-blend-mode: soft-light;
+  z-index: -1;
+}
+
+.container{
+  width: min(1200px, 92vw);
+  margin-inline: auto;
+}
+
+/* Header “vidriado” */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.25));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,215,0,.18);
+}
+
+.header-inner{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.logo{
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 20px rgba(255,215,0,.28));
+}
+
+.brand{
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 700;
+  letter-spacing: .5px;
+  margin: 0;
+  font-size: clamp(28px, 3vw, 40px);
+  background: linear-gradient(90deg, var(--gold-1), var(--gold-2), var(--gold-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 16px rgba(255,215,0,.2);
+}
+
+.tag{
+  grid-column: 2 / -1;
+  margin: -6px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: .85;
+}
+
+/* Intro */
+.intro{
+  text-align: center;
+  padding: 60px 0 24px;
+}
+.title{
+  font-family: "Cinzel Decorative", serif;
+  font-size: clamp(30px,4vw,44px);
+  margin: 0 0 8px;
+  letter-spacing: .5px;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold-1), var(--gold-3));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 0 26px rgba(255,215,0,.18);
+}
+.subtitle{
+  margin:0;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* Grid de enlaces (5) */
+.links-grid{
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  padding: 34px 0 70px;
+}
+
+/* Tarjeta con borde dorado animado */
+.link-card{
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  padding: 22px 20px;
+  min-height: 120px;
+  text-decoration: none;
+  color: var(--text);
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(120deg, var(--gold-4), var(--gold-3), var(--gold-2), var(--gold-1)) border-box;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transform: translateZ(0); /* GPU hint */
+  isolation: isolate;
+}
+
+/* Brillos internos */
+.link-card::before,
+.link-card::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius: inherit;
+  pointer-events:none;
+  z-index: -1;
+}
+/* Halo dorado suave */
+.link-card::before{
+  background: radial-gradient(280px 140px at var(--mx,50%) var(--my,50%), rgba(255,215,0,.25), transparent 60%);
+  transition: background .25s ease;
+}
+/* Destello que se desliza */
+.link-card::after{
+  background:
+    linear-gradient(110deg, transparent 0 35%, rgba(255,255,255,.22) 50%, transparent 65% 100%);
+  transform: translateX(-120%);
+  animation: shine 3.8s linear infinite;
+  opacity: .6;
+}
+@keyframes shine{
+  to { transform: translateX(120%); }
+}
+
+.link-title{
+  font-weight: 700;
+  letter-spacing: .3px;
+  font-size: 18px;
+}
+.link-desc{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Hover extravagante con 3D ligero y glow */
+.link-card:hover{
+  transform: perspective(800px) translateY(-4px) rotateX(.7deg);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.55),
+    0 0 24px rgba(255,215,0,.22);
+}
+.link-card:hover .link-title{
+  text-shadow: 0 0 12px rgba(255,215,0,.25);
+}
+
+/* Footer */
+.site-footer{
+  border-top: 1px solid rgba(255,215,0,.15);
+  background: linear-gradient(to top, rgba(0,0,0,.5), rgba(0,0,0,.15));
+}
+.site-footer .container{
+  padding: 18px 0 34px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Accesibilidad: reducir animación si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce){
+  .link-card, .link-card::after{ animation: none; transition: none; }
+}
