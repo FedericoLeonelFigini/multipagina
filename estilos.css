@@ -215,3 +215,39 @@ body::after{
 @media (prefers-reduced-motion: reduce){
   .link-card, .link-card::after{ animation: none; transition: none; }
 }
+/* ==== Footer actualizado (redes + layout) ==== */
+.foot-inner{
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: 20px 0 36px;
+}
+
+.socials{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.socials a{
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: .2px;
+  background: linear-gradient(90deg, var(--gold-1), var(--gold-2), var(--gold-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 12px rgba(255,215,0,.18);
+  transition: transform .2s ease, text-shadow .2s ease, opacity .2s ease;
+  opacity: .9;
+}
+.socials a:hover{
+  transform: translateY(-1px);
+  text-shadow: 0 0 18px rgba(255,215,0,.28);
+  opacity: 1;
+}
+.site-footer small{
+  color: var(--muted);
+  opacity: .9;
+}
